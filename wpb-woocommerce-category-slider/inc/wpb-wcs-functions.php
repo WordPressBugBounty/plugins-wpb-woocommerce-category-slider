@@ -123,7 +123,8 @@ if( !function_exists('wpb_wcs_register_menu_page') ){
 	        apply_filters( 'wpb_wcs_settings_user_capability', 'manage_options' ),
 	        WPB_WCS_TEXTDOMAIN.'-about',
 	        'wpb_wcs_get_menu_page',
-	        'dashicons-images-alt'
+	        'dashicons-images-alt',
+	        60
 	    );
 	}
 }

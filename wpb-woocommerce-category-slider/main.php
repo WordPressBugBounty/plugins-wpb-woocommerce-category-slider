@@ -4,7 +4,7 @@
  * Plugin Name:       WPB Product Categories Slider for WooCommerce
  * Plugin URI:        https://wpbean.com/downloads/wpb-woocommerce-category-slider-pro/
  * Description:       WPB Product Categories Slider for WooCommerce is highly customizable Category slider plugin for WooCommerce.
- * Version:           1.3
+ * Version:           1.4
  * Author:            wpbean
  * Author URI:        https://wpbean.com/
  * Text Domain:       wpb-woocommerce-category-slider
@@ -81,7 +81,7 @@ function wpb_wcs_free_plugin_init(){
 	add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'wpb_wcs_plugin_actions_links' );
 
 	register_deactivation_hook( plugin_basename( __FILE__ ), 'wpb_wcs_lite_plugin_deactivation' );
-	add_action( 'admin_notices', 'wpb_wcs_pro_discount_admin_notice' );
+	//add_action( 'admin_notices', 'wpb_wcs_pro_discount_admin_notice' );
 	add_action( 'admin_init', 'wpb_wcs_pro_discount_admin_notice_dismissed' );
 	add_action( 'wp_dashboard_setup', 'wpb_wcs_add_dashboard_widgets' );
 
@@ -90,5 +90,10 @@ function wpb_wcs_free_plugin_init(){
 	require_once dirname( __FILE__ ) . '/admin/settings/class.settings-api.php';
 	require_once dirname( __FILE__ ) . '/admin/settings/wpb-wcs-settings-config.php';
 	require_once dirname( __FILE__ ) . '/admin/taxonomie-meta.php';
+
+	if( is_admin() ){
+		require_once dirname( __FILE__ ) . '/inc/DiscountPage/DiscountPage.php';
+		new WPBean_WC_Categories_Slider_DiscountPage();
+	}
 }
 add_action( 'plugins_loaded', 'wpb_wcs_free_plugin_init' );
